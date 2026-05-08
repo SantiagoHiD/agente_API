@@ -1,0 +1,107 @@
+[
+  {
+    "id": "SGC-US-001",
+    "texto": "Como líder de proyecto, quiero crear un nuevo proyecto ingresando nombre, cliente, fecha de inicio y fecha fin estimada, para que el equipo pueda comenzar a planificar las actividades del proyecto.",
+    "criterios": "GIVEN líder de proyecto autenticado en el módulo de gestión WHEN ingresa nombre (mínimo 5 caracteres, máximo 100), selecciona cliente de la lista, establece fecha inicio (no anterior a hoy) y fecha fin (posterior a fecha inicio) THEN el sistema crea el proyecto con estado 'Planificación', genera código único (PRY-YYYYMMDD-NNN) y muestra confirmación en menos de 2 segundos",
+    "dominio": "gestion_proyectos",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-002",
+    "texto": "Como desarrollador asignado a un proyecto, quiero registrar las horas trabajadas por tarea indicando fecha, cantidad de horas y descripción de la actividad realizada, para que el líder pueda hacer seguimiento del esfuerzo real versus el estimado.",
+    "criterios": "GIVEN desarrollador asignado a al menos una tarea activa WHEN selecciona tarea, ingresa fecha (no futura, no mayor a 7 días atrás), horas (mínimo 0.5, máximo 16, incrementos de 0.5) y descripción (mínimo 20 caracteres) THEN el sistema registra el tiempo, actualiza el total de horas de la tarea y recalcula el porcentaje de avance del proyecto",
+    "dominio": "seguimiento_tiempo",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-003",
+    "texto": "Como administrador del sistema, quiero gestionar los usuarios del sistema pudiendo crear, editar, desactivar y reactivar cuentas con roles específicos, para que solo personal autorizado tenga acceso a las funcionalidades correspondientes.",
+    "criterios": "GIVEN administrador autenticado con rol 'admin' WHEN crea usuario con email corporativo válido (@katary.co), nombre completo, y asigna uno o más roles (admin, líder, desarrollador, QA, cliente) THEN el sistema crea la cuenta con estado 'activo', envía email de bienvenida con contraseña temporal que expira en 24 horas, y registra la acción en el log de auditoría",
+    "dominio": "autenticacion",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-004",
+    "texto": "Como líder de proyecto, quiero asignar tareas a los miembros de mi equipo especificando título, descripción, prioridad, fecha límite y esfuerzo estimado, para que cada persona sepa qué debe hacer y cuándo debe entregarlo.",
+    "criterios": "GIVEN líder de proyecto con al menos un miembro en su equipo WHEN crea tarea con título (5-200 caracteres), descripción (mínimo 30 caracteres), prioridad (crítica/alta/media/baja), fecha límite (posterior a hoy, no mayor a fecha fin del proyecto), esfuerzo estimado (1-200 horas) y asigna a un miembro THEN el sistema crea la tarea con estado 'pendiente', notifica al miembro asignado por email y en el sistema, y actualiza el backlog del proyecto",
+    "dominio": "gestion_proyectos",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-005",
+    "texto": "Como gerente general, quiero ver un dashboard con indicadores clave de todos los proyectos activos incluyendo porcentaje de avance, estado de semáforo, horas consumidas versus presupuestadas y cantidad de tareas pendientes, para tomar decisiones informadas sobre la asignación de recursos.",
+    "criterios": "GIVEN gerente autenticado con rol 'gerencia' WHEN accede al dashboard ejecutivo THEN el sistema muestra en menos de 3 segundos: lista de proyectos activos con semáforo (verde: avance >= plan, amarillo: retraso < 10%, rojo: retraso >= 10%), gráfico de barras de horas consumidas vs presupuestadas por proyecto, tabla resumen con total de tareas (pendientes, en progreso, completadas) y filtros por cliente, líder y rango de fechas",
+    "dominio": "reportes",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-006",
+    "texto": "Como usuario del sistema, quiero iniciar sesión con mi email corporativo y contraseña, y que el sistema bloquee mi cuenta después de 5 intentos fallidos consecutivos, para proteger el acceso no autorizado a la información del proyecto.",
+    "criterios": "GIVEN usuario con cuenta activa y credenciales válidas WHEN ingresa email y contraseña correctos THEN el sistema inicia sesión, registra fecha/hora/IP en log de auditoría y redirige al dashboard en menos de 2 segundos. GIVEN usuario que ha fallado 4 intentos WHEN falla el quinto intento THEN el sistema bloquea la cuenta por 30 minutos, envía email de notificación al usuario y al administrador, y muestra mensaje 'Cuenta bloqueada temporalmente. Contacte al administrador o espere 30 minutos.'",
+    "dominio": "autenticacion",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-007",
+    "texto": "Como líder de proyecto, quiero generar un reporte semanal automático que incluya avance por tarea, horas registradas, riesgos identificados y tareas vencidas, para enviarlo al cliente y a la gerencia sin tener que compilar la información manualmente.",
+    "criterios": "GIVEN proyecto activo con al menos una tarea y un registro de horas WHEN el líder solicita reporte semanal (o se genera automáticamente cada lunes a las 7:00 AM) THEN el sistema genera PDF con: resumen ejecutivo, tabla de tareas (nombre, asignado, estado, % avance, horas), gráfico de burndown, lista de tareas vencidas en rojo, y sección de riesgos. El reporte se genera en menos de 10 segundos y se envía por email al líder, cliente y gerencia",
+    "dominio": "reportes",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-008",
+    "texto": "Como analista de calidad, quiero registrar defectos encontrados durante las pruebas especificando severidad, componente afectado, pasos para reproducir y evidencia, para que el equipo de desarrollo pueda corregirlos con toda la información necesaria.",
+    "criterios": "GIVEN analista QA asignado a un proyecto con casos de prueba WHEN registra defecto con título (10-200 caracteres), severidad (bloqueante/crítico/mayor/menor/trivial), componente afectado (selección de lista), pasos para reproducir (mínimo 3 pasos), resultado esperado, resultado obtenido y al menos una captura de pantalla THEN el sistema crea el defecto con estado 'nuevo', lo vincula al caso de prueba que falló, notifica al desarrollador asignado al componente y actualiza las métricas de calidad del proyecto",
+    "dominio": "calidad",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-009",
+    "texto": "Como desarrollador, quiero recibir notificaciones en tiempo real cuando me asignen una nueva tarea, cuando una tarea que depende de la mía se complete, o cuando un defecto sea reportado en mi componente, para poder reaccionar rápidamente sin tener que revisar el sistema constantemente.",
+    "criterios": "GIVEN desarrollador con sesión activa WHEN ocurre un evento relevante (asignación de tarea, completitud de dependencia, nuevo defecto en su componente) THEN el sistema envía notificación push en menos de 5 segundos y email en menos de 1 minuto. Las notificaciones incluyen: tipo de evento, enlace directo al recurso, nombre de quien generó el evento. El usuario puede configurar qué notificaciones recibir por cada canal (push/email/ambos/ninguno)",
+    "dominio": "notificaciones",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-010",
+    "texto": "Como líder de proyecto, quiero poder cambiar el estado de un proyecto siguiendo un flujo definido (Planificación → En Progreso → En Pausa → Completado → Cerrado), para que el sistema refleje el ciclo de vida real del proyecto y restrinja acciones según el estado.",
+    "criterios": "GIVEN proyecto en estado 'En Progreso' WHEN líder cambia estado a 'En Pausa' indicando motivo (mínimo 20 caracteres) THEN el sistema actualiza estado, congela fechas de tareas activas, notifica a todos los miembros y registra en historial con fecha/hora/usuario/motivo. GIVEN proyecto en estado 'Planificación' WHEN líder intenta cambiar a 'Cerrado' (saltando estados intermedios) THEN el sistema rechaza la transición y muestra los estados válidos siguientes",
+    "dominio": "gestion_proyectos",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-011",
+    "texto": "Como administrador, quiero configurar las competencias evaluables por proyecto y definir la escala de evaluación, para que las evaluaciones de desempeño trimestrales se ajusten a los objetivos específicos de cada proyecto y equipo.",
+    "criterios": "GIVEN administrador o líder con permiso de configuración WHEN define competencias para un proyecto seleccionando de catálogo (técnicas, blandas, liderazgo) o creando nuevas (nombre 5-100 chars, descripción, peso 1-100%), asigna escala (1-5 o 1-10) y establece peso por competencia (deben sumar 100%) THEN el sistema guarda la configuración, valida que los pesos sumen 100%, y la competencia queda disponible para las próximas evaluaciones trimestrales del equipo",
+    "dominio": "evaluacion_desempeno",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-012",
+    "texto": "Como cliente del proyecto, quiero acceder a un portal donde pueda ver el avance general de mi proyecto, los entregables completados, y dejar comentarios o aprobaciones sobre los entregables, para tener visibilidad y participar activamente en el proceso sin necesidad de reuniones presenciales.",
+    "criterios": "GIVEN cliente con cuenta activa y proyecto asignado WHEN accede al portal del cliente THEN ve: resumen de avance (% completado, semáforo), lista de entregables con estado (pendiente/en revisión/aprobado/rechazado), timeline del proyecto. GIVEN cliente visualizando un entregable en estado 'en revisión' WHEN agrega comentario (10-2000 caracteres) y selecciona 'Aprobar' o 'Solicitar cambios' THEN el sistema registra la acción, notifica al líder de proyecto en menos de 1 minuto, y actualiza el estado del entregable",
+    "dominio": "portal_cliente",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-013",
+    "texto": "Como analista de calidad, quiero generar una matriz de trazabilidad que vincule cada requerimiento con sus historias de usuario, casos de prueba y defectos asociados, para verificar que toda la funcionalidad solicitada está cubierta y probada.",
+    "criterios": "GIVEN proyecto con al menos 3 requerimientos documentados, historias de usuario vinculadas y casos de prueba creados WHEN el analista QA solicita la matriz de trazabilidad THEN el sistema genera en menos de 5 segundos una tabla con columnas: ID requerimiento, descripción, historias vinculadas, casos de prueba (total/pasados/fallidos), defectos abiertos, y cobertura (%). Los requerimientos sin cobertura completa se resaltan en amarillo. Los requerimientos sin ningún caso de prueba se resaltan en rojo",
+    "dominio": "calidad",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-014",
+    "texto": "Como usuario del sistema, quiero recuperar mi contraseña mediante un enlace enviado a mi email corporativo registrado, para poder acceder nuevamente al sistema sin depender del administrador.",
+    "criterios": "GIVEN usuario con cuenta activa WHEN solicita recuperación ingresando su email THEN el sistema envía enlace de recuperación al email registrado (válido por 1 hora, uso único), sin revelar si el email existe o no en el sistema (mensaje genérico: 'Si el email está registrado, recibirás instrucciones'). GIVEN usuario con enlace de recuperación válido WHEN establece nueva contraseña (mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número, 1 especial, diferente a las últimas 5 contraseñas) THEN el sistema actualiza la contraseña, invalida todas las sesiones activas, envía confirmación por email y registra en log de auditoría",
+    "dominio": "autenticacion",
+    "proyecto": "Katary360"
+  },
+  {
+    "id": "SGC-US-015",
+    "texto": "Como líder de proyecto, quiero registrar y hacer seguimiento de riesgos del proyecto indicando descripción, probabilidad, impacto, estrategia de mitigación y responsable, para gestionar proactivamente las amenazas al éxito del proyecto.",
+    "criterios": "GIVEN líder de proyecto activo WHEN registra riesgo con descripción (20-500 caracteres), probabilidad (alta/media/baja), impacto (alto/medio/bajo), categoría (técnico/organizacional/externo), estrategia de mitigación (20-1000 caracteres) y asigna responsable del equipo THEN el sistema calcula nivel de riesgo (probabilidad × impacto = crítico/significativo/moderado/bajo), lo agrega a la matriz de riesgos, programa revisión quincenal automática y notifica al responsable. Los riesgos críticos notifican adicionalmente a la gerencia",
+    "dominio": "gestion_riesgos",
+    "proyecto": "Katary360"
+  }
+]

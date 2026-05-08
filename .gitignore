@@ -1,0 +1,50 @@
+# === Archivos sensibles ===
+.env
+*.env.local
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# === ChromaDB (se regenera automáticamente) ===
+knowledge_base_data/
+chroma/
+
+# === Salidas generadas ===
+output/
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Flask ===
+instance/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Archivos de configuración locales
+config.py
+*.cfg
+
+# Archivos de ejecución del servidor
+*.pid
+*.sock
+

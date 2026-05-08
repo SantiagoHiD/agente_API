@@ -1,0 +1,19 @@
+SISTEMA DE GESTIÓN DE BIBLIOTECA DIGITAL
+
+El sistema debe permitir a los usuarios registrarse y hacer login de forma segura.
+Una vez autenticados, deben poder buscar libros por título, autor o categoría.
+El catálogo debe mostrar los libros disponibles con su información básica.
+
+Los usuarios registrados pueden realizar préstamos de libros digitales.
+Cada usuario puede tener máximo 3 libros prestados simultáneamente.
+El préstamo tiene una duración de 14 días y se puede renovar una vez.
+
+El sistema debe notificar al usuario cuando falten 2 días para la devolución.
+Si el libro no se devuelve a tiempo, el usuario no podrá hacer nuevos préstamos
+hasta que regularice su situación.
+
+Los administradores pueden agregar, editar y eliminar libros del catálogo.
+También deben poder ver reportes de los libros más prestados y los usuarios
+más activos.
+
+El sistema debe ser rápido y fácil de usar.

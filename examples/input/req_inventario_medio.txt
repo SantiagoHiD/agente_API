@@ -1,0 +1,3 @@
+El módulo de inventario debe permitir gestionar productos con control
+de stock. Cuando un producto esté por agotarse, el sistema debe alertar
+al administrador.

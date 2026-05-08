@@ -1,0 +1,5 @@
+El sistema de gestión de proyectos debe permitir a los líderes de proyecto
+crear y administrar proyectos de forma eficiente. Los usuarios deben poder
+asignar tareas a los miembros del equipo y hacer seguimiento del progreso.
+El sistema debe generar reportes adecuados para la gerencia. La interfaz
+debe ser intuitiva y el sistema debe responder rápidamente.

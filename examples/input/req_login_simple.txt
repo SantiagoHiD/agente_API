@@ -1,0 +1,1 @@
+El sistema debe permitir a los usuarios registrarse con email y contraseña.

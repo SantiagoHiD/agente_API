@@ -1,0 +1,4 @@
+El sistema de evaluación de desempeño debe permitir a los líderes
+evaluar a sus equipos trimestralmente usando competencias configurables.
+El proceso debe ser transparente y los resultados deben ser accesibles
+para RRHH. El sistema debe generar planes de mejora automáticamente.
